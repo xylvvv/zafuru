@@ -1,15 +1,17 @@
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import devConfig from './configs/dev.config';
+import { mergeConfig } from './config';
 import { print } from '../utils';
 
-const start = async () => {
-  const { devServer } = devConfig;
-  const { port, host } = devServer;
+const start = async (options) => {
+  const devConfig = mergeConfig(true);
   const devServerOptions = {
-    ...devServer,
-    open: `http://localhost:${port}`,
+    ...devConfig.devServer,
+    ...options,
   };
+  const { port, host } = devServerOptions;
+  devServerOptions.open = `http://localhost:${port}`;
+
   const compiler = webpack(devConfig);
   const server = new WebpackDevServer(devServerOptions, compiler);
 

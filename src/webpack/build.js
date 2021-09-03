@@ -1,10 +1,10 @@
 import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import prodConfig from './configs/prod.config';
+import { mergeConfig } from './config';
 import { print } from '../utils';
 
 const build = (analyzerOptions) => {
-  const compiler = webpack(prodConfig());
+  const compiler = webpack(mergeConfig());
 
   if (analyzerOptions) {
     new BundleAnalyzerPlugin({

@@ -12,8 +12,9 @@ program
   .command('start')
   .description('start your project in development mode')
   .option('-p, --port <port>', 'port used by the server (default: 3007)')
+  .option('--host <host>', 'host used by the server (default: 0.0.0.0)')
   .action((options) => {
-    start();
+    start(options);
   });
 
 /* build 打包项目 */

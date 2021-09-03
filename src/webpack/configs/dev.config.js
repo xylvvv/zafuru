@@ -1,7 +1,4 @@
-import merge from 'webpack-merge';
-import baseConfig from './base.config';
-
-const devConfig = merge(baseConfig(true), {
+const devConfig = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -10,7 +7,7 @@ const devConfig = merge(baseConfig(true), {
     historyApiFallback: true,
     static: false,
     hot: true,
-  }
-});
+  },
+};
 
 export default devConfig;
