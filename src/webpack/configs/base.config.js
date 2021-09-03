@@ -1,6 +1,7 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import babelConfig from './babel.config';
 
 const execPath = process.cwd();
@@ -43,6 +44,7 @@ const baseConfig = (isDev = false) => {
         template: path.resolve(execPath, './src/index.html'),
         filename: 'index.html',
       }),
+      new ProgressBarPlugin(),
     ],
     module: {
       rules: [

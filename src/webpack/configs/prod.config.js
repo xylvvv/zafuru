@@ -8,9 +8,7 @@ const prodConfig = {
     publicPath: ''
   },
   plugins: [
-    new CleanWebpackPlugin({
-      verbose: true,
-    }),
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css'
