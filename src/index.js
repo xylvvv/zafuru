@@ -1,7 +1,7 @@
 import program from 'commander';
 import { print } from './utils';
 import pkg from '../package.json';
-import start from './webpack/start';
+import { start, build } from './webpack';
 
 program
   .version(`v${pkg.version}`, '-v, --version')
@@ -14,6 +14,24 @@ program
   .option('-p, --port <port>', 'port used by the server (default: 3007)')
   .action((options) => {
     start();
+  });
+
+/* build 打包项目 */
+program
+  .command('build')
+  .description('build your project in production mode')
+  .action(() => {
+    build();
+  });
+
+/* analyze bundle分析 */
+program
+  .command('analyze')
+  .description('Visualize size of webpack output files with an interactive zoomable treemap')
+  .option('-p, --port <port>', 'Default: 8888. Port that will be used in server mode to start HTTP server.')
+  .option('--host <host>', 'Default: 127.0.0.1. Host that will be used in server mode to start HTTP server.')
+  .action((options) => {
+    build(options);
   });
 
 // 未知命令

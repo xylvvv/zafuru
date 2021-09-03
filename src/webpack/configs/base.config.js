@@ -43,10 +43,6 @@ const baseConfig = (isDev = false) => {
         template: path.resolve(execPath, './src/index.html'),
         filename: 'index.html',
       }),
-      new MiniCssExtractPlugin({
-        filename: '[name].[contenthash].css',
-        chunkFilename: '[id].[contenthash].css'
-      })
     ],
     module: {
       rules: [
