@@ -4,6 +4,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const prodConfig = {
   mode: 'production',
+  devtool: 'nosources-source-map',
   output: {
     publicPath: ''
   },
