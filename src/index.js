@@ -1,6 +1,7 @@
 import program from 'commander';
 import { print } from './utils';
 import pkg from '../package.json';
+import start from './webpack/start';
 
 program
   .version(`v${pkg.version}`, '-v, --version')
@@ -12,7 +13,7 @@ program
   .description('start your project in development mode')
   .option('-p, --port <port>', 'port used by the server (default: 3007)')
   .action((options) => {
-    console.log(options);
+    start();
   });
 
 // 未知命令
