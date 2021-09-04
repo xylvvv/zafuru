@@ -14,19 +14,21 @@ const baseConfig = (isDev = false) => {
         publicPath: '../',
       }
     } : 'style-loader',
-    'css-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+      }
+    },
     {
       loader: 'postcss-loader',
       options: {
-        plugins: [require(path.resolve(execPath, './node_modules/autoprefixer'))()],
+        postcssOptions: {
+          plugins: [require(path.resolve(execPath, './node_modules/autoprefixer'))()],
+        },
       },
     },
-    {
-      loader: 'less-loader', // compiles Less to CSS
-      options: {
-        javascriptEnabled: true
-      },
-    },
+    'less-loader', // compiles Less to CSS
   ];
 
   return {
@@ -41,8 +43,8 @@ const baseConfig = (isDev = false) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(execPath, './src/index.html'),
-        filename: 'index.html',
+        template: path.resolve(execPath, './src/document.ejs'),
+        favicon: path.resolve(execPath, './favicon.ico'),
       }),
       new ProgressBarPlugin(),
     ],

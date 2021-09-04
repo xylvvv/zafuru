@@ -1,31 +1,38 @@
 const babelConfig = {
-  "presets": [
-    ["@babel/preset-env", {
-      "useBuiltIns": "usage", // or "entry"
-      "corejs": 3
-    }],
-    "@babel/preset-react"
-  ],
-  "plugins": [
-    ["@babel/transform-runtime", {
-      "corejs": 3
-    }],
+  presets: [
     [
-      "@babel/plugin-proposal-decorators",
+      '@babel/preset-env',
       {
-        "legacy": true
+        useBuiltIns: 'usage',
+        corejs: {
+          version: '3.17',
+          proposals: true,
+        },
+      },
+    ],
+    '@babel/preset-react',
+  ],
+  plugins: [
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: {
+          version: 3,
+          proposals: true,
+        },
       }
     ],
-    "@babel/plugin-proposal-class-properties",
     [
-      "import",
+      'import',
       {
-        "libraryName": "antd",
-        "libraryDirectroy": "es",
-        "style": "css"
-      }
-    ]
-  ]
+        libraryName: 'antd',
+        libraryDirectroy: 'es',
+        style: 'css',
+      },
+    ],
+    // 装饰器
+    ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+  ],
 };
 
 export default babelConfig;
