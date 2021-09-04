@@ -41,6 +41,9 @@ const baseConfig = (isDev = false) => {
       chunkFilename: '[name].[contenthash].chunk.js',
       publicPath: '/'
     },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(execPath, './src/document.ejs'),
@@ -51,7 +54,7 @@ const baseConfig = (isDev = false) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           use: [{
             loader: 'babel-loader',
