@@ -10,7 +10,12 @@ const babelConfig = {
         },
       },
     ],
-    '@babel/preset-react',
+    [
+      '@babel/preset-react',
+      {
+        runtime: 'automatic', // React17新JSX转换规则
+      },
+    ],
     '@babel/preset-typescript',
   ],
   plugins: [
