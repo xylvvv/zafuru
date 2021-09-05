@@ -43,6 +43,9 @@ const baseConfig = (isDev = false) => {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+      alias: {
+        '@': path.resolve(execPath, './src/'),
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({
