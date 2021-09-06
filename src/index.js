@@ -27,7 +27,7 @@ program
   .command('create')
   .description('create a project')
   .action(async () => {
-    print.green('\n🎉🎉🎉~欢迎使用zafuru，轻松构建react&ts项目～🎉🎉🎉\n')
+    print.green('\n🎉🎉🎉 ～欢迎使用zafuru，轻松构建React&TypeScript项目～ 🎉🎉🎉\n')
     const answer = await inquirer.prompt(questions);
     if (answer.ok) {
       create(answer);

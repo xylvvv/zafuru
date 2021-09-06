@@ -1,4 +1,4 @@
-import { createReadStream, createWriteStream, rename } from 'fs';
+import { createReadStream, createWriteStream, renameSync } from 'fs';
 import path from 'path';
 import readline from 'readline';
 import { once } from 'events';
@@ -33,17 +33,15 @@ const overwritePkg = async ({ name, desc }) => {
 
     await once(rl, 'close');
 
-    rename(targetPath, sourcePath, (err) => {
-      if (err) throw err;
-    });
+    renameSync(targetPath, sourcePath);
   } catch(e) {
-    throw new Error('package.json文件创建失败');
+    throw new Error('Failed to modify the file package.json!!!');
   }
 };
 
 const download = (name) => {
   return new Promise((resolve, reject) => {
-    const child = spawn('git', ['clone', gitUrl, name || gitProjectName], {
+    const child = spawn('git', ['clone', gitUrl, name], {
       stdio: 'inherit'
     });
     child.on('error', (err) => {
@@ -55,6 +53,8 @@ const download = (name) => {
     child.on('close', (code) => {
       if (code === 0) {
         resolve(code);
+      } else {
+        reject('Failed to pull template. Please try again later!!!');
       }
     });
   });
@@ -64,13 +64,17 @@ const create = async (info) => {
   const name = info.name.trim();
   const desc = info.desc.trim();
   try {
-    await download(name);
+    const dirName = name || gitProjectName;
+    await download(dirName);
     if (name || desc) {
       await overwritePkg({ name, desc });
     }
-    print.green('\n-------✅ ✅ 创建完成-------\n');
+    print.green('\n✅ ✅ Done. Now run:\n');
+    console.log(`  cd ${dirName}`);
+    console.log('  npm install');
+    console.log('  npm run start');
   } catch(e) {
-    print.red(e.message);
+    print.red(e.message || e);
   }
 };
 

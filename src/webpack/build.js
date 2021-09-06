@@ -31,7 +31,7 @@ const build = (analyzerOptions) => {
       colors: true,
       children: false,
     }));
-    print.green('\n-------✅ ✅ 构建完成-------\n');
+    print.green('\n✅ ✅ Done. \n');
   });
 };
 
