@@ -13,22 +13,22 @@ const baseConfig = (isDev = false) => {
       options: {
         publicPath: '../',
       }
-    } : 'style-loader',
+    } : require.resolve('style-loader'),
     {
-      loader: 'css-loader',
+      loader: require.resolve('css-loader'),
       options: {
         modules: true,
       }
     },
     {
-      loader: 'postcss-loader',
+      loader: require.resolve('postcss-loader'),
       options: {
         postcssOptions: {
-          plugins: [require(path.resolve(execPath, './node_modules/autoprefixer'))()],
+          plugins: [require('autoprefixer')()],
         },
       },
     },
-    'less-loader', // compiles Less to CSS
+    require.resolve('less-loader'), // compiles Less to CSS
   ];
 
   return {
@@ -60,7 +60,7 @@ const baseConfig = (isDev = false) => {
           test: /\.(js|jsx|ts|tsx)$/,
           exclude: /node_modules/,
           use: [{
-            loader: 'babel-loader',
+            loader: require.resolve('babel-loader'),
             options: babelConfig,
           }],
         },
@@ -77,7 +77,7 @@ const baseConfig = (isDev = false) => {
           test: /\.(jpe?g|png|gif|svg)$/,
           exclude: /node_modules/,
           use: [{
-            loader: 'url-loader',
+            loader: require.resolve('url-loader'),
             options: {
               name: 'images/[name].[ext]?v=[hash:6]',
               publicPath: '../',
@@ -89,7 +89,7 @@ const baseConfig = (isDev = false) => {
           test: /\.(wav|woff|woff2|eot|ttf|mp3|mp4)$/,
           exclude: /node_modules/,
           use: [{
-            loader: 'file-loader',
+            loader: require.resolve('file-loader'),
             options: {
               name: 'assets/[name].[ext]?v=[hash:6]',
               publicPath: '../'

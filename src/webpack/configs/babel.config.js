@@ -1,7 +1,7 @@
 const babelConfig = {
   presets: [
     [
-      '@babel/preset-env',
+      require.resolve('@babel/preset-env'),
       {
         useBuiltIns: 'usage',
         corejs: {
@@ -11,16 +11,16 @@ const babelConfig = {
       },
     ],
     [
-      '@babel/preset-react',
+      require.resolve('@babel/preset-react'),
       {
         runtime: 'automatic', // React17新JSX转换规则
       },
     ],
-    '@babel/preset-typescript',
+    require.resolve('@babel/preset-typescript'),
   ],
   plugins: [
     [
-      '@babel/plugin-transform-runtime',
+      require.resolve('@babel/plugin-transform-runtime'),
       {
         corejs: {
           version: 3,
@@ -29,7 +29,7 @@ const babelConfig = {
       }
     ],
     [
-      'import',
+      require.resolve('babel-plugin-import'),
       {
         libraryName: 'antd',
         libraryDirectroy: 'es',
@@ -37,7 +37,7 @@ const babelConfig = {
       },
     ],
     // 装饰器
-    ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+    [require.resolve('@babel/plugin-proposal-decorators'), { 'legacy': true }],
   ],
 };
 
